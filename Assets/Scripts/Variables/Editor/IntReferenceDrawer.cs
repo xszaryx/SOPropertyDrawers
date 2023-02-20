@@ -21,8 +21,6 @@ namespace DangerField.Variables
             var variable = property.FindPropertyRelative("Variable");
             var testDsc = property.FindPropertyRelative("testDsc");
 
-            Debug.Log("IntReference Drawer testDec: " + testDsc.stringValue);
-
             var label = new Label(property.displayName);
             label.AddToClassList("unity-text-element");
             label.AddToClassList("unity-base-field");
