@@ -10,7 +10,6 @@ namespace DangerField.Variables
     [CustomPropertyDrawer(typeof(IntReference))]
     public class IntReferenceDrawer : PropertyDrawer
     {
-        //*
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new VisualElement();
@@ -35,7 +34,6 @@ namespace DangerField.Variables
             button.AddToClassList("pane-button");
             container.Add(button);
 
-            //*
             button.clicked += () =>
             {
                 useConstant.boolValue = false;
@@ -48,10 +46,7 @@ namespace DangerField.Variables
                     useConstant.boolValue = true;
                     var constantValueField = new IntegerField();
                     constantValueField.BindProperty(constantValue);
-                    constantValueField.AddToClassList("unity-base-text-field__input");
-                    constantValueField.AddToClassList("unity-base-text-field__input--single-line");
-                    constantValueField.AddToClassList("unity-base-field__input");
-                    constantValueField.AddToClassList("unity-integer-field__input");
+                    constantValueField.style.width = Length.Percent(100);
                     valueGroup.Add(constantValueField);
                     useConstant.serializedObject.ApplyModifiedProperties();
 
@@ -63,8 +58,6 @@ namespace DangerField.Variables
                     var variableField = new ObjectField();
                     variableField.objectType = typeof(IntVariable);
                     variableField.BindProperty(variable);
-                    variableField.AddToClassList("unity-base-field__input");
-                    variableField.AddToClassList("unity-object-field__input");
                     valueGroup.Add(variableField);
                     useConstant.serializedObject.ApplyModifiedProperties();
                 });
@@ -72,32 +65,23 @@ namespace DangerField.Variables
                 // display the menu
                 menu.DropDown(button.worldBound);
             };
-            //button.AddToClassList("unity-text-element");
-            //button.AddToClassList("unity-button");
            
             if (useConstant.boolValue)
             {
                 var constantValueField = new IntegerField();
                 constantValueField.BindProperty(constantValue);
-                constantValueField.AddToClassList("unity-base-text-field__input");
-                constantValueField.AddToClassList("unity-base-text-field__input--single-line");
-                constantValueField.AddToClassList("unity-base-field__input");
-                constantValueField.AddToClassList("unity-integer-field__input");
+                constantValueField.style.width = Length.Percent(100);
                 valueGroup.Add(constantValueField);
             }
             else
             {
                 var variableField = new ObjectField();
                 variableField.objectType = typeof(IntVariable);
-                variableField.AddToClassList("unity-base-field__input");
-                variableField.AddToClassList("unity-object-field__input");
                 variableField.BindProperty(variable);
                 valueGroup.Add(variableField);
             }
-
-            container.Add(valueGroup);/**/
-            
-
+            valueGroup.style.width = Length.Percent(100);
+            container.Add(valueGroup);
             return container;
         }
     }
