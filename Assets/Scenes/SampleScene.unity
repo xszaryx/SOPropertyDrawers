@@ -251,8 +251,8 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   IntVar:
-    UseConstant: 0
-    ConstantValue: 0
+    UseConstant: 1
+    ConstantValue: 100
     Variable: {fileID: 0}
     testDsc: test
 --- !u!4 &780059186
