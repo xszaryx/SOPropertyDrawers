@@ -10,8 +10,6 @@ namespace DangerField.Variables
     [CustomPropertyDrawer(typeof(IntReference))]
     public class IntReferenceDrawer : PropertyDrawer
     {
-        bool _useConstant = true;
-        bool _useVariable = false;
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new VisualElement();
@@ -36,13 +34,10 @@ namespace DangerField.Variables
 
             button.clicked += () =>
             {
-                _useConstant = useConstant.boolValue;
-                _useVariable = !useConstant.boolValue;
-
                 // create the menu and add items to it
                 GenericMenu menu = new GenericMenu();
                 
-                menu.AddItem(new GUIContent("Use Constant"), _useConstant, () =>
+                menu.AddItem(new GUIContent("Use Constant"), useConstant.boolValue, () =>
                 {
                     valueGroup.Clear();
                     useConstant.boolValue = true;
@@ -53,7 +48,7 @@ namespace DangerField.Variables
                     useConstant.serializedObject.ApplyModifiedProperties();
 
                 });
-                menu.AddItem(new GUIContent("Use Variable"), _useVariable, () =>
+                menu.AddItem(new GUIContent("Use Variable"), !useConstant.boolValue, () =>
                 {
                     valueGroup.Clear();
                     useConstant.boolValue = false;
